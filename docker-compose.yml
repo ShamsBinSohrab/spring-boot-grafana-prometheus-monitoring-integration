@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+
+  myjavaapp:
+    image: springio/gs-spring-boot-docker
+    ports:
+      - 9999:8080
+    networks:
+      - grafana-prometheus-javaapp-network
+
+networks:
+  grafana-prometheus-javaapp-network:

@@ -1,0 +1,34 @@
+version: "2"
+
+services:
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    networks: 
+      - grafana-prometheus-network
+  
+  alertmanager:
+    image: functions/alertmanager
+    ports:
+      - 9093:9093
+    networks: 
+      - grafana-prometheus-network
+      
+  prometheus:
+    build: .
+    image: ghosh-prometheus
+    ports:
+      - 9090:9090
+    networks: 
+      - grafana-prometheus-network
+
+  springapp:
+    image: spring-app:v0.1
+    ports:
+      - 9999:8080
+    networks: 
+      - grafana-prometheus-network  
+
+networks:
+  grafana-prometheus-network: 
